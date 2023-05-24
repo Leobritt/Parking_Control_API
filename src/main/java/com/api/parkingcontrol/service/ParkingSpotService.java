@@ -26,5 +26,20 @@ public class ParkingSpotService {
 	 public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {	 
 		return parkingSpotRepository.save(parkingSpotModel);
 	 }
+
+	 /*é necessario delcarar este método dentro da Interface Repository, pois o JPA não possui pronto*/
+    public boolean existsByLicensePlateCar(String licensePlateCar) {
+        return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
+    }
+
+	public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
+		return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
+	}
+
+    public boolean existsByApartmentAndBlock(String apartment, String block) {
+        return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
+    }
+
+	 
 	 
 }

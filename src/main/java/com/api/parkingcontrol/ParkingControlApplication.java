@@ -14,11 +14,5 @@ public class ParkingControlApplication {
 		
 
 	}
-	@GetMapping("/")
-	public String hW() {
-		
-		return "Hello World!";
-	}
-
 	
 }
