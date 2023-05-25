@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,7 @@ public class ParkingSpotController {
 	 */
 	@GetMapping
 	public ResponseEntity<List<ParkingSpotModel>> getAllParkingSPots(){
-		
+		return  ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
 	}
 	
 	

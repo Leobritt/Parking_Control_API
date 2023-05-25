@@ -1,5 +1,8 @@
 package com.api.parkingcontrol.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.api.parkingcontrol.model.ParkingSpotModel;
@@ -26,6 +29,11 @@ public class ParkingSpotService {
 	 public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {	 
 		return parkingSpotRepository.save(parkingSpotModel);
 	 }
+	
+	@Transactional
+	public List<ParkingSpotModel> findAll(){
+		return parkingSpotRepository.findAll();
+	}
 
 	 /*é necessario delcarar este método dentro da Interface Repository, pois o JPA não possui pronto*/
     public boolean existsByLicensePlateCar(String licensePlateCar) {
