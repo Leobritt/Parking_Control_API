@@ -1,7 +1,8 @@
 package com.api.parkingcontrol.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -25,14 +26,20 @@ public class ParkingSpotService {
 	}
 	 
 	/*Usando o JPA*/
+	/*Método CREATE*/
 	@Transactional /*Garante o rollback*/
 	 public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {	 
 		return parkingSpotRepository.save(parkingSpotModel);
 	 }
-	
+	/*Método READ*/
 	@Transactional
 	public List<ParkingSpotModel> findAll(){
 		return parkingSpotRepository.findAll();
+	}
+	/*Método READ by id*/
+	@Transactional
+	public Optional <ParkingSpotModel> findById(UUID id) {
+		return parkingSpotRepository.findById(id);
 	}
 
 	 /*é necessario delcarar este método dentro da Interface Repository, pois o JPA não possui pronto*/

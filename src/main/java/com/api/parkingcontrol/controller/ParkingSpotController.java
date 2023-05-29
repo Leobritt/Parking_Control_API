@@ -3,13 +3,15 @@ package com.api.parkingcontrol.controller;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +43,22 @@ public class ParkingSpotController {
 	public ResponseEntity<List<ParkingSpotModel>> getAllParkingSPots(){
 		return  ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
 	}
+	/* passar entre chaves pois será um path variable*/
+	@GetMapping("/{id}")
+	/*value do path variable será igual ao do mapping*/
+	public ResponseEntity<Object> getOneParkingSpot(@PathVariable(value = "id") UUID id){
+		/*Optional pode ter valor null boa pratica*/
+		/*Optional métodos isPresent(), get(), orElse(), orElseGet(), orElseThrow()*/
+		Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
+		
+		if (!parkingSpotModelOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking spot not found!");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModelOptional.get());
+		
+	}
 	
-	
-	 /* @RequestBody recebe os dados via json @Valid em esta marcação as validações da DTO ñ são realizadas*/
+	 /* @RequestBody recebe os dados via json @Valid sem esta marcação as validações da DTO ñ são realizadas*/
 	
 	/* Post salvar novo registro */
 	@PostMapping
