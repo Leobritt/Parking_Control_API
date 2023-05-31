@@ -45,7 +45,7 @@ public class ParkingSpotService {
 	public void delete(ParkingSpotModel parkingSpotModel) {	
 		parkingSpotRepository.delete(parkingSpotModel);
 	}
-
+	
 	/*
 	 * é necessario delcarar este método dentro da Interface Repository, pois o JPA
 	 * não possui pronto
